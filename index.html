@@ -124,13 +124,15 @@
     </div>
 
     <!-- Hero Section -->
+<section id="inicio" class="relative h-screen w-full overflow-hidden flex items-center justify-center">
+    <!-- Background Image with Overlay -->
     <div class="absolute inset-0 z-0">
-        <!-- Mobile portrait image (hidden on desktop) -->
+        <!-- Mobile portrait image -->
         <img src="https://res.cloudinary.com/dklxeusv3/image/upload/v1770577942/_RO30193_copy_c5p4bc.jpg" 
              alt="Baile Vida & Sabor Studio Mobile" 
              class="w-full h-full object-cover object-top opacity-90 md:hidden">
         
-        <!-- Desktop landscape image (hidden on mobile) -->
+        <!-- Desktop landscape image -->
         <img src="https://res.cloudinary.com/dklxeusv3/image/upload/v1770572004/_RO30173_copy_fn8eps.jpg" 
              alt="Baile Vida & Sabor Studio Desktop" 
              class="w-full h-full object-cover object-top opacity-90 hidden md:block" 
@@ -139,36 +141,35 @@
         <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-black/30"></div>
     </div>
 
-        <!-- Content -->
-        <div class="relative z-10 text-center px-4 max-w-5xl mx-auto mt-16">
-            <!-- GOLD BADGE (from first version) -->
-            
-            <!-- ORIGINAL FONT STYLE -->
-            <h1 class="hero-title text-5xl md:text-7xl lg:text-9xl font-black text-white uppercase italic tracking-tighter mb-6 drop-shadow-2xl leading-none">
-                Baile Vida <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-blue to-blue-400">&</span> Sabor
-            </h1>
-            
-            <!-- SUBTITLE - NO BLACK BOX -->
-            <p class="hero-subtitle text-lg md:text-2xl text-gray-200 max-w-2xl mx-auto mb-10 font-sans font-light">
-                Escuela de Salsa Cubana en Medellín. <br> Casino • Son • Rumba
-            </p>
-            
-            <!-- BUTTONS -->
-            <div class="hero-buttons flex flex-col sm:flex-row items-center justify-center gap-4">
-                <a href="#clases" class="w-1/2 sm:w-auto px-6 py-3 sm:px-8 sm:py-4 text-sm sm:text-base bg-brand-blue hover:bg-blue-600 text-white rounded-full font-bold transition-all transform hover:scale-105 shadow-lg shadow-blue-900/50 flex items-center justify-center gap-2 font-sans">
-                    Ver Horarios <i data-lucide="arrow-right" class="w-4 h-4"></i>
-                </a>
-                <a href="#contacto" class="w-1/2 sm:w-auto px-6 py-3 sm:px-8 sm:py-4 text-sm sm:text-base border-2 border-brand-gold text-brand-gold hover:bg-brand-gold hover:text-black rounded-full font-bold transition-all flex items-center justify-center font-sans">
-                    Contactar
-                </a>
-            </div>
+    <!-- Content - ADDED pt-20 for mobile spacing -->
+    <div class="relative z-10 text-center px-4 max-w-5xl mx-auto mt-16 pt-16 md:pt-0">
+        
+        <!-- ORIGINAL FONT STYLE -->
+        <h1 class="hero-title text-4xl md:text-7xl lg:text-9xl font-black text-white uppercase italic tracking-tighter mb-6 drop-shadow-2xl leading-none">
+            Baile Vida <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-blue to-blue-400">&</span> Sabor
+        </h1>
+        
+        <!-- SUBTITLE - NO BLACK BOX -->
+        <p class="hero-subtitle text-base md:text-2xl text-gray-200 max-w-2xl mx-auto mb-10 font-sans font-light">
+            Escuela de Salsa Cubana en Medellín. <br> Casino • Son • Rumba
+        </p>
+        
+        <!-- BUTTONS - smaller on mobile -->
+        <div class="hero-buttons flex flex-col sm:flex-row items-center justify-center gap-4">
+            <a href="#clases" class="w-1/2 sm:w-auto px-5 py-2.5 sm:px-8 sm:py-4 text-sm sm:text-base bg-brand-blue hover:bg-blue-600 text-white rounded-full font-bold transition-all transform hover:scale-105 shadow-lg shadow-blue-900/50 flex items-center justify-center gap-2 font-sans">
+                Ver Horarios <i data-lucide="arrow-right" class="w-4 h-4"></i>
+            </a>
+            <a href="#contacto" class="w-1/2 sm:w-auto px-5 py-2.5 sm:px-8 sm:py-4 text-sm sm:text-base border-2 border-brand-gold text-brand-gold hover:bg-brand-gold hover:text-black rounded-full font-bold transition-all flex items-center justify-center font-sans">
+                Contactar
+            </a>
         </div>
+    </div>
 
-        <!-- Scroll Down Indicator -->
-        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce text-white/50">
-            <i data-lucide="chevron-down" class="w-8 h-8"></i>
-        </div>
-    </section>
+    <!-- Scroll Down Indicator -->
+    <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce text-white/50 hidden md:block">
+        <i data-lucide="chevron-down" class="w-8 h-8"></i>
+    </div>
+</section>
 
     <!-- Marquee Section -->
     <div class="bg-brand-gold py-3 overflow-hidden border-y-4 border-black">
