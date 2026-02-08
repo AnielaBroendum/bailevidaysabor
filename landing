@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Baile Vida & Sabor | Escuela de Salsa en Medellín</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- GSAP for Animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Using Permanent Marker for that urban/logo feel, and Inter for body -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Permanent+Marker&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        marker: ['"Permanent Marker"', 'cursive'],
+                    },
+                    colors: {
+                        brand: {
+                            blue: '#2563EB',
+                            darkBlue: '#1e40af',
+                            gold: '#EAB308',
+                            darkGold: '#a16207',
+                            black: '#050505',
+                            gray: '#171717'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #050505;
+            color: white;
+            overflow-x: hidden;
+        }
+        
+        .glass-nav {
+            background: rgba(5, 5, 5, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .text-shadow-lg {
+            text-shadow: 2px 2px 0px rgba(0,0,0,0.8);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #050505; }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #EAB308; }
+
+        .marquee-container {
+            overflow: hidden;
+            white-space: nowrap;
+        }
+        .marquee-content {
+            display: inline-block;
+            animation: marquee 20s linear infinite;
+        }
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 py-4 px-6 lg:px-12 flex justify-between items-center">
+        <!-- Logo Image -->
+        <div class="flex items-center z-50 w-32 md:w-40 transition-all duration-300" id="nav-logo-container">
+            <img src="https://res.cloudinary.com/dklxeusv3/image/upload/v1770572004/BVYS_vfj5bh.png" alt="Baile Vida & Sabor Logo" class="w-full h-auto drop-shadow-[0_2px_10px_rgba(0,0,0,0.8)]">
+        </div>
+
+        <!-- Desktop Menu -->
+        <div class="hidden md:flex items-center gap-8">
+            <a href="#inicio" class="text-sm font-bold uppercase tracking-widest text-gray-300 hover:text-brand-gold transition-colors">Inicio</a>
+            <a href="#nosotros" class="text-sm font-bold uppercase tracking-widest text-gray-300 hover:text-brand-gold transition-colors">Nosotros</a>
+            <a href="#clases" class="text-sm font-bold uppercase tracking-widest text-gray-300 hover:text-brand-gold transition-colors">Clases</a>
+            <a href="#instructores" class="text-sm font-bold uppercase tracking-widest text-gray-300 hover:text-brand-gold transition-colors">Instructores</a>
+            <a href="#contacto" class="px-6 py-2 bg-brand-blue hover:bg-blue-600 text-white rounded-full font-bold text-sm transition-all transform hover:scale-105 shadow-lg shadow-blue-900/50">
+                Reservar Clase
+            </a>
+        </div>
+
+        <!-- Mobile Menu Button -->
+        <button id="mobile-menu-btn" class="md:hidden z-50 text-white focus:outline-none">
+            <i data-lucide="menu" class="w-8 h-8"></i>
+        </button>
+    </nav>
+
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu" class="fixed inset-0 bg-black z-40 transform translate-x-full transition-transform duration-300 flex flex-col items-center justify-center gap-8">
+        <a href="#inicio" class="text-2xl font-bold text-white hover:text-brand-gold mobile-link">Inicio</a>
+        <a href="#nosotros" class="text-2xl font-bold text-white hover:text-brand-gold mobile-link">Nosotros</a>
+        <a href="#clases" class="text-2xl font-bold text-white hover:text-brand-gold mobile-link">Clases</a>
+        <a href="#instructores" class="text-2xl font-bold text-white hover:text-brand-gold mobile-link">Instructores</a>
+        <a href="#contacto" class="text-2xl font-bold text-brand-gold mobile-link">Contacto</a>
+    </div>
+
+    <!-- Hero Section with Custom Background -->
+    <section id="inicio" class="relative h-screen w-full overflow-hidden flex items-center justify-center">
+        <!-- Background Image with Overlay -->
+        <div class="absolute inset-0 z-0">
+            <!-- User Provided Landscape Image -->
+            <img src="https://res.cloudinary.com/dklxeusv3/image/upload/v1770572004/_RO30173_copy_fn8eps.jpg" 
+                 alt="Baile Vida & Sabor Studio" 
+                 class="w-full h-full object-cover object-top opacity-90 scale-105" id="hero-bg">
+            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-black/30"></div>
+        </div>
+
+        <!-- Content -->
+        <div class="relative z-10 text-center px-4 max-w-5xl mx-auto mt-20">
+            <div class="mb-8 inline-block animate-bounce">
+                 <i data-lucide="chevron-down" class="w-10 h-10 text-brand-gold"></i>
+            </div>
+            
+            <!-- Custom Font Title -->
+            <h1 class="hero-title font-marker text-6xl md:text-8xl lg:text-9xl text-white mb-2 drop-shadow-[0_5px_5px_rgba(0,0,0,0.8)] leading-none tracking-wide">
+                Baile Vida
+            </h1>
+            <h1 class="hero-title font-marker text-6xl md:text-8xl lg:text-9xl text-brand-gold mb-8 drop-shadow-[0_5px_5px_rgba(0,0,0,0.8)] leading-none tracking-wide">
+                & Sabor
+            </h1>
+            
+            <p class="hero-subtitle text-lg md:text-2xl text-gray-200 max-w-2xl mx-auto mb-10 font-sans font-light drop-shadow-md bg-black/30 backdrop-blur-sm p-4 rounded-xl border border-white/10">
+                Escuela de Salsa Cubana en Medellín. <br> Casino • Son • Rumba
+            </p>
+            
+            <div class="hero-buttons flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a href="#clases" class="w-full sm:w-auto px-8 py-4 bg-brand-blue hover:bg-blue-600 text-white rounded-full font-bold transition-all transform hover:scale-105 shadow-lg shadow-blue-900/50 flex items-center justify-center gap-2 font-sans">
+                    Ver Horarios <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                </a>
+                <a href="#contacto" class="w-full sm:w-auto px-8 py-4 border-2 border-brand-gold text-brand-gold hover:bg-brand-gold hover:text-black rounded-full font-bold transition-all flex items-center justify-center font-sans">
+                    Contactar
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Marquee Section -->
+    <div class="bg-brand-gold py-3 overflow-hidden border-y-4 border-black">
+        <div class="marquee-container">
+            <div class="marquee-content text-black font-black text-xl uppercase tracking-widest font-sans">
+                Salsa Casino • Son Cubano • Rumba • Reparto • Salsa Casino • Son Cubano • Rumba • Reparto • Salsa Casino • Son Cubano • Rumba • Reparto •
+            </div>
+            <div class="marquee-content text-black font-black text-xl uppercase tracking-widest font-sans">
+                Salsa Casino • Son Cubano • Rumba • Reparto • Salsa Casino • Son Cubano • Rumba • Reparto • Salsa Casino • Son Cubano • Rumba • Reparto •
+            </div>
+        </div>
+    </div>
+
+    <!-- About Section -->
+    <section id="nosotros" class="py-24 bg-brand-gold text-black relative overflow-hidden">
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="grid md:grid-cols-2 gap-16 items-center">
+                <div class="gsap-fade-right">
+                    <h2 class="text-4xl md:text-6xl font-black uppercase italic mb-8 leading-tight font-sans">
+                        Ritmo, Pasión <br> y Comunidad
+                    </h2>
+                    <p class="text-lg md:text-xl font-medium mb-6 leading-relaxed font-sans">
+                        En Baile Vida & Sabor no solo enseñamos pasos, cultivamos una familia. 
+                        Ubicados en el corazón de Medellín, somos la casa de la salsa cubana auténtica.
+                    </p>
+                    <p class="text-lg opacity-80 mb-8 font-sans">
+                        Desde principiantes hasta avanzados, nuestro método único te llevará a sentir 
+                        la música como nunca antes. Únete a la experiencia BVYS.
+                    </p>
+                    <div class="flex gap-12">
+                        <div>
+                            <h4 class="text-5xl font-black font-sans">5+</h4>
+                            <p class="text-sm font-bold uppercase tracking-wider mt-1 font-sans">Años de Experiencia</p>
+                        </div>
+                        <div>
+                            <h4 class="text-5xl font-black font-sans">1k+</h4>
+                            <p class="text-sm font-bold uppercase tracking-wider mt-1 font-sans">Estudiantes</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative gsap-fade-left">
+                    <div class="absolute -inset-4 bg-black/10 rounded-full blur-3xl"></div>
+                    <img src="https://images.unsplash.com/photo-1545959570-a925d2a68c82?q=80&w=1000&auto=format&fit=crop" 
+                         alt="Dance Class" 
+                         class="relative rounded-2xl shadow-2xl rotate-3 hover:rotate-0 transition-transform duration-500 border-4 border-black w-full object-cover h-[500px]">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Classes Section -->
+    <section id="clases" class="py-24 bg-brand-black relative">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16 gsap-fade-up">
+                <span class="text-brand-gold font-bold tracking-widest uppercase text-sm mb-2 block font-sans">Programas Diseñados Para Ti</span>
+                <h2 class="text-4xl md:text-6xl font-black text-white uppercase italic font-sans">Nuestros Estilos</h2>
+                <div class="h-1.5 w-24 bg-gradient-to-r from-brand-blue to-brand-gold mt-6 mx-auto rounded-full"></div>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Class Cards (Unsplash placeholders kept as requested for classes) -->
+                <div class="group relative overflow-hidden rounded-2xl bg-gray-900 border border-gray-800 hover:border-brand-blue/50 transition-all duration-300 gsap-card">
+                    <div class="aspect-[4/3] overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?q=80&w=800&auto=format&fit=crop" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-80 group-hover:opacity-100" alt="Salsa Casino">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent opacity-90"></div>
+                    </div>
+                    <div class="absolute bottom-0 left-0 p-6 w-full">
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="px-2 py-1 text-xs font-bold bg-brand-gold text-black rounded uppercase font-sans">Todos Niveles</span>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-2 group-hover:text-brand-blue transition-colors font-sans">Salsa Casino</h3>
+                    </div>
+                </div>
+                <div class="group relative overflow-hidden rounded-2xl bg-gray-900 border border-gray-800 hover:border-brand-blue/50 transition-all duration-300 gsap-card">
+                    <div class="aspect-[4/3] overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1504609813442-a8924e83f76e?q=80&w=800&auto=format&fit=crop" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-80 group-hover:opacity-100" alt="Son Cubano">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent opacity-90"></div>
+                    </div>
+                    <div class="absolute bottom-0 left-0 p-6 w-full">
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="px-2 py-1 text-xs font-bold bg-gray-700 text-white rounded uppercase font-sans">Intermedio</span>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-2 group-hover:text-brand-blue transition-colors font-sans">Son Cubano</h3>
+                    </div>
+                </div>
+                <div class="group relative overflow-hidden rounded-2xl bg-gray-900 border border-gray-800 hover:border-brand-blue/50 transition-all duration-300 gsap-card">
+                    <div class="aspect-[4/3] overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1535525153412-5a42439a210d?q=80&w=800&auto=format&fit=crop" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-80 group-hover:opacity-100" alt="Rumba">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent opacity-90"></div>
+                    </div>
+                    <div class="absolute bottom-0 left-0 p-6 w-full">
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="px-2 py-1 text-xs font-bold bg-brand-blue text-white rounded uppercase font-sans">Avanzado</span>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-2 group-hover:text-brand-blue transition-colors font-sans">Rumba Cubana</h3>
+                    </div>
+                </div>
+                <div class="group relative overflow-hidden rounded-2xl bg-gray-900 border border-gray-800 hover:border-brand-blue/50 transition-all duration-300 gsap-card">
+                    <div class="aspect-[4/3] overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1524594152303-9fd13543fe6e?q=80&w=800&auto=format&fit=crop" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-80 group-hover:opacity-100" alt="Reparto">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent opacity-90"></div>
+                    </div>
+                    <div class="absolute bottom-0 left-0 p-6 w-full">
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="px-2 py-1 text-xs font-bold bg-gray-700 text-white rounded uppercase font-sans">Intermedio</span>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-2 group-hover:text-brand-blue transition-colors font-sans">Reparto</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Instructors Section (Updated to 2 slots with Jose Hernandez) -->
+    <section id="instructores" class="py-24 bg-gradient-to-b from-brand-black to-blue-950">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16 gsap-fade-up">
+                <span class="text-brand-gold font-bold tracking-widest uppercase text-sm mb-2 block font-sans">El Equipo</span>
+                <h2 class="text-4xl md:text-6xl font-black text-white uppercase italic font-sans">Nuestros Instructores</h2>
+                <div class="h-1.5 w-24 bg-gradient-to-r from-brand-blue to-brand-gold mt-6 mx-auto rounded-full"></div>
+            </div>
+
+            <!-- Changed to 2 Columns -->
+            <div class="grid md:grid-cols-2 gap-12 max-w-4xl mx-auto">
+                <!-- Instructor 1: Jose Hernandez (User Photo) -->
+                <div class="group relative gsap-card">
+                    <div class="relative overflow-hidden rounded-2xl aspect-[3/4] shadow-2xl border-2 border-white/10 group-hover:border-brand-gold/50 transition-colors">
+                        <!-- User Provided Portrait -->
+                        <img src="https://res.cloudinary.com/dklxeusv3/image/upload/v1770572003/_RO30091-2_copy_guqcaj.jpg" 
+                             class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" alt="Jose Hernandez">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-80"></div>
+                        
+                        <div class="absolute bottom-0 left-0 w-full p-8">
+                            <h3 class="text-3xl font-bold text-white font-marker tracking-wide">Jose Hernandez</h3>
+                            <p class="text-brand-gold font-medium text-lg font-sans">Director & Salsa Casino</p>
+                            
+                            <div class="flex gap-4 mt-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300 translate-y-4 group-hover:translate-y-0">
+                                <a href="#" class="p-3 bg-white/10 backdrop-blur-md rounded-full hover:bg-brand-blue text-white transition-colors">
+                                    <i data-lucide="instagram" class="w-6 h-6"></i>
+                                </a>
+                                <a href="#" class="p-3 bg-white/10 backdrop-blur-md rounded-full hover:bg-brand-blue text-white transition-colors">
+                                    <i data-lucide="facebook" class="w-6 h-6"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Instructor 2: Placeholder/Generic (To keep layout balanced as requested) -->
+                <div class="group relative gsap-card">
+                    <div class="relative overflow-hidden rounded-2xl aspect-[3/4] shadow-2xl border-2 border-white/10 group-hover:border-brand-gold/50 transition-colors">
+                        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=800&auto=format&fit=crop" 
+                             class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" alt="Instructor">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-80"></div>
+                        
+                        <div class="absolute bottom-0 left-0 w-full p-8">
+                            <h3 class="text-3xl font-bold text-white font-marker tracking-wide">Isabella Rios</h3>
+                            <p class="text-brand-gold font-medium text-lg font-sans">Rumba Cubana</p>
+                            
+                            <div class="flex gap-4 mt-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300 translate-y-4 group-hover:translate-y-0">
+                                <a href="#" class="p-3 bg-white/10 backdrop-blur-md rounded-full hover:bg-brand-blue text-white transition-colors">
+                                    <i data-lucide="instagram" class="w-6 h-6"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Kids Section -->
+    <section class="py-24 bg-brand-gold text-black">
+        <div class="container mx-auto px-6">
+            <div class="bg-black text-white rounded-[3rem] p-8 md:p-16 flex flex-col md:flex-row items-center gap-12 relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-64 h-64 bg-brand-blue rounded-full blur-[100px] opacity-20"></div>
+                <div class="absolute bottom-0 left-0 w-64 h-64 bg-brand-gold rounded-full blur-[100px] opacity-20"></div>
+
+                <div class="flex-1 relative z-10 gsap-fade-right">
+                    <div class="inline-block bg-brand-gold text-black px-4 py-1 rounded-full font-bold text-sm mb-6 font-sans">
+                        PROGRAMA ESPECIAL
+                    </div>
+                    <h2 class="text-5xl md:text-7xl font-black uppercase italic mb-6 font-marker tracking-wide">
+                        BVYS Kids
+                    </h2>
+                    <p class="text-xl text-gray-300 mb-8 font-sans">
+                        Formación integral para los más pequeños. Desarrollan coordinación, ritmo y disciplina mientras se divierten.
+                    </p>
+                    <button class="px-8 py-4 bg-white text-black hover:bg-gray-200 rounded-full font-bold transition-all transform hover:scale-105 font-sans">
+                        Inscribir a mi Hijo
+                    </button>
+                </div>
+                <div class="flex-1 relative z-10 gsap-fade-left">
+                    <img src="https://images.unsplash.com/photo-1516627145497-ae6968895b74?q=80&w=1000&auto=format&fit=crop" 
+                         alt="Kids Dancing" 
+                         class="rounded-2xl shadow-2xl rotate-3 border-4 border-brand-gold w-full object-cover h-[400px]">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contacto" class="py-24 bg-brand-black">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-2 gap-16">
+                <div class="gsap-fade-right">
+                    <span class="text-brand-gold font-bold tracking-widest uppercase text-sm mb-2 block font-sans">Únete a la Familia</span>
+                    <h2 class="text-4xl md:text-6xl font-black text-white uppercase italic mb-8 font-sans">Contáctanos</h2>
+                    <p class="text-gray-400 text-lg mb-8 font-sans">
+                        ¿Listo para mover el cuerpo? Escríbenos por WhatsApp o visítanos en nuestra sede en Medellín.
+                    </p>
+                    
+                    <div class="space-y-6">
+                        <div class="flex items-start gap-4">
+                            <div class="p-3 bg-gray-900 rounded-lg text-brand-gold">
+                                <i data-lucide="map-pin" class="w-6 h-6"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-bold text-lg font-sans">Ubicación</h4>
+                                <p class="text-gray-400 font-sans">Calle 10 # 35-20, El Poblado<br>Medellín, Colombia</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start gap-4">
+                            <div class="p-3 bg-gray-900 rounded-lg text-brand-gold">
+                                <i data-lucide="phone" class="w-6 h-6"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-bold text-lg font-sans">Teléfono / WhatsApp</h4>
+                                <p class="text-gray-400 font-sans">+57 300 123 4567</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-12 flex gap-4">
+                        <a href="#" class="p-4 bg-gradient-to-br from-purple-600 to-pink-600 rounded-full hover:scale-110 transition-transform text-white">
+                            <i data-lucide="instagram" class="w-6 h-6"></i>
+                        </a>
+                        <a href="#" class="p-4 bg-blue-600 rounded-full hover:scale-110 transition-transform text-white">
+                            <i data-lucide="facebook" class="w-6 h-6"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="bg-gray-900 p-8 rounded-3xl border border-gray-800 gsap-fade-left">
+                    <form class="space-y-6" onsubmit="event.preventDefault(); alert('Mensaje enviado (Simulación)');">
+                        <div>
+                            <label class="block text-sm font-bold text-gray-400 mb-2 font-sans">Nombre</label>
+                            <input type="text" class="w-full bg-black border border-gray-700 rounded-lg p-4 text-white focus:border-brand-gold focus:outline-none transition-colors font-sans" placeholder="Tu nombre" required>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold text-gray-400 mb-2 font-sans">Email</label>
+                            <input type="email" class="w-full bg-black border border-gray-700 rounded-lg p-4 text-white focus:border-brand-gold focus:outline-none transition-colors font-sans" placeholder="tu@email.com" required>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold text-gray-400 mb-2 font-sans">Mensaje</label>
+                            <textarea rows="4" class="w-full bg-black border border-gray-700 rounded-lg p-4 text-white focus:border-brand-gold focus:outline-none transition-colors font-sans" placeholder="¿En qué podemos ayudarte?" required></textarea>
+                        </div>
+                        <button type="submit" class="w-full py-4 bg-brand-blue hover:bg-blue-600 text-white rounded-full font-bold transition-all transform hover:scale-[1.02] font-sans">
+                            Enviar Mensaje
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black border-t border-gray-900 py-12">
+        <div class="container mx-auto px-6 flex flex-col items-center gap-6">
+             <!-- Logo in Footer -->
+             <div class="w-32 opacity-80 hover:opacity-100 transition-opacity">
+                <img src="https://res.cloudinary.com/dklxeusv3/image/upload/v1770572004/BVYS_vfj5bh.png" alt="Baile Vida & Sabor Logo">
+            </div>
+            <p class="text-gray-500 text-sm font-sans">
+                © <span id="year"></span> Baile Vida & Sabor. Todos los derechos reservados.
+            </p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        lucide.createIcons();
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Mobile Menu Logic
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        const links = document.querySelectorAll('.mobile-link');
+        let isOpen = false;
+
+        btn.addEventListener('click', () => {
+            isOpen = !isOpen;
+            if (isOpen) {
+                menu.classList.remove('translate-x-full');
+                btn.innerHTML = '<i data-lucide="x" class="w-8 h-8"></i>';
+            } else {
+                menu.classList.add('translate-x-full');
+                btn.innerHTML = '<i data-lucide="menu" class="w-8 h-8"></i>';
+            }
+            lucide.createIcons();
+        });
+
+        links.forEach(link => {
+            link.addEventListener('click', () => {
+                isOpen = false;
+                menu.classList.add('translate-x-full');
+                btn.innerHTML = '<i data-lucide="menu" class="w-8 h-8"></i>';
+                lucide.createIcons();
+            });
+        });
+
+        // Navbar Scroll Effect
+        const navbar = document.getElementById('navbar');
+        const navLogo = document.getElementById('nav-logo-container');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('glass-nav', 'py-2');
+                navbar.classList.remove('py-4');
+                navLogo.classList.remove('w-40');
+                navLogo.classList.add('w-28');
+            } else {
+                navbar.classList.remove('glass-nav', 'py-2');
+                navbar.classList.add('py-4');
+                navLogo.classList.add('w-40');
+                navLogo.classList.remove('w-28');
+            }
+        });
+
+        // GSAP Animations
+        gsap.registerPlugin(ScrollTrigger);
+
+        gsap.from(".hero-title", {
+            duration: 1.2,
+            y: 100,
+            opacity: 0,
+            stagger: 0.2,
+            ease: "power4.out",
+            delay: 0.2
+        });
+
+        gsap.from(".hero-subtitle", {
+            duration: 1,
+            y: 50,
+            opacity: 0,
+            ease: "power3.out",
+            delay: 0.8
+        });
+
+        gsap.from(".hero-buttons", {
+            duration: 1,
+            y: 30,
+            opacity: 0,
+            ease: "power3.out",
+            delay: 1
+        });
+
+        gsap.to("#hero-bg", {
+            scrollTrigger: {
+                trigger: "#inicio",
+                start: "top top",
+                end: "bottom top",
+                scrub: true
+            },
+            y: 100,
+            scale: 1.1
+        });
+
+        // Fade Up Elements
+        gsap.utils.toArray('.gsap-fade-up').forEach(element => {
+            gsap.from(element, {
+                scrollTrigger: { trigger: element, start: "top 85%", toggleActions: "play none none reverse" },
+                y: 50, opacity: 0, duration: 0.8, ease: "power3.out"
+            });
+        });
+
+        // Fade Right/Left
+        gsap.utils.toArray('.gsap-fade-right').forEach(element => {
+            gsap.from(element, {
+                scrollTrigger: { trigger: element, start: "top 80%", toggleActions: "play none none reverse" },
+                x: -50, opacity: 0, duration: 1, ease: "power3.out"
+            });
+        });
+
+        gsap.utils.toArray('.gsap-fade-left').forEach(element => {
+            gsap.from(element, {
+                scrollTrigger: { trigger: element, start: "top 80%", toggleActions: "play none none reverse" },
+                x: 50, opacity: 0, duration: 1, ease: "power3.out"
+            });
+        });
+
+        // Stagger Cards
+        gsap.from(".gsap-card", {
+            scrollTrigger: { trigger: "#clases", start: "top 70%" },
+            y: 100, opacity: 0, duration: 0.8, stagger: 0.2, ease: "power3.out"
+        });
+    </script>
+</body>
+</html>
